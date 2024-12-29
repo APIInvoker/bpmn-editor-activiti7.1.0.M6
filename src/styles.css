@@ -1,0 +1,151 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: #f5f7fa;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+}
+
+/* 工具栏样式 */
+.toolbar {
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #dcdfe6;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  z-index: 100;
+}
+
+.button-group {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 20px;
+  position: relative;
+}
+
+.button-group:not(:last-child):after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 20px;
+  background-color: #dcdfe6;
+}
+
+.toolbar-btn {
+  padding: 8px 15px;
+  margin-right: 8px;
+  background-color: #fff;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #606266;
+  transition: .3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  white-space: nowrap;
+  outline: none;
+}
+
+.toolbar-btn:hover {
+  color: #409eff;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+}
+
+.toolbar-btn:active {
+  color: #3a8ee6;
+  border-color: #3a8ee6;
+  outline: none;
+}
+
+.toolbar-btn.primary {
+  color: #fff;
+  background-color: #409eff;
+  border-color: #409eff;
+}
+
+.toolbar-btn.primary:hover {
+  background: #66b1ff;
+  border-color: #66b1ff;
+  color: #fff;
+}
+
+.toolbar-btn.primary:active {
+  background: #3a8ee6;
+  border-color: #3a8ee6;
+  color: #fff;
+}
+
+/* 禁用状态 */
+.toolbar-btn:disabled {
+  color: #c0c4cc;
+  cursor: not-allowed;
+  background-image: none;
+  background-color: #fff;
+  border-color: #ebeef5;
+}
+
+.toolbar-btn.primary:disabled {
+  color: #fff;
+  background-color: #a0cfff;
+  border-color: #a0cfff;
+}
+
+/* 画布容器样式 */
+#canvas {
+  flex: 1;
+  height: calc(100vh - 57px);
+  background-color: #fff;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+  margin: 20px;
+  border-radius: 4px;
+}
+
+/* 属性面板样式 */
+#properties-panel {
+  position: absolute;
+  right: 20px;
+  top: 77px;
+  bottom: 20px;
+  width: 300px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+  overflow: auto;
+  z-index: 100;
+}
+
+/* 适配属性面板存在时的画布宽度 */
+.content.with-properties-panel #canvas {
+  margin-right: 340px;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c4cc;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f7fa;
+}
