@@ -76,7 +76,7 @@ const utils = {
     
     ['undo', 'redo'].forEach(id => 
       document.getElementById(`${id}Btn`)?.addEventListener('click', () => 
-        modeler.get('commandStack')[id]()));
+        modeler.get('commandStack')[id]()));  // This line binds the redo button to the redo function of the command stack
   } catch (err) {
     console.error('初始化失败:', err);
   }

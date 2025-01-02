@@ -1,0 +1,36 @@
+{
+  "name": "Activiti",
+  "uri": "http://activiti.org/bpmn",
+  "prefix": "activiti",
+  "xml": {
+    "tagAlias": "lowerCase"
+  },
+  "types": [
+    {
+      "name": "UserTask",
+      "extends": ["bpmn:UserTask"],
+      "properties": [
+        {
+          "name": "assignee",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "candidateUsers",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "candidateGroups", 
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "candidates",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    }
+  ]
+}
