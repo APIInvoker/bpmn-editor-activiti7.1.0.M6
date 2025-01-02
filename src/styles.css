@@ -14,15 +14,31 @@ html, body {
   position: relative;
 }
 
+/* 工具栏容器样式 */
+.toolbar-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #f5f7fa;
+  margin: 20px;
+}
+
 /* 工具栏样式 */
 .toolbar {
+  width: 73.1%;  /* This property sets the width of the toolbar */
+  max-width: 1200px;
   padding: 10px 20px;
   background-color: #fff;
-  border-bottom: 1px solid #dcdfe6;
+  border: 1px solid #dcdfe6;
   display: flex;
   align-items: center;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+  border-radius: 4px;
   z-index: 100;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
 }
 
 .button-group {
@@ -109,7 +125,7 @@ html, body {
 /* 画布容器样式 */
 #canvas {
   flex: 1;
-  height: calc(100vh - 57px);
+  height: calc(100vh - 97px);
   background-color: #fff;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
   margin: 20px;
@@ -120,8 +136,8 @@ html, body {
 #properties-panel {
   position: absolute;
   right: 20px;
-  top: 77px;
-  bottom: 20px;
+  top: 20px;  /* This property sets the top position of the properties panel */
+  bottom: 20px;  /* This property sets the bottom position of the properties panel */
   width: 300px;
   background-color: #fff;
   border-radius: 4px;

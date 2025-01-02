@@ -8,42 +8,44 @@
 </head>
 <body>
     <div class="content with-properties-panel">
-        <div class="toolbar">
-            <div class="button-group">
-                <button class="toolbar-btn" id="zoomInBtn" title="放大">
-                    <i class="el-icon-zoom-in"></i>
-                    放大
-                </button>
-                <button class="toolbar-btn" id="zoomOutBtn" title="缩小">
-                    <i class="el-icon-zoom-out"></i>
-                    缩小
-                </button>
-                <button class="toolbar-btn" id="resetZoomBtn" title="重置缩放">
-                    <i class="el-icon-refresh"></i>
-                    重置
-                </button>
-            </div>
-            
-            <div class="button-group">
-                <button class="toolbar-btn" id="undoBtn" title="撤销">
-                    <i class="el-icon-back"></i>
-                    撤销
-                </button>
-                <button class="toolbar-btn" id="redoBtn" title="重做">
-                    <i class="el-icon-right"></i>
-                    重做
-                </button>
-            </div>
-            
-            <div class="button-group">
-                <button class="toolbar-btn primary" id="exportBtn" title="导出为BPMN文件">
-                    <i class="el-icon-download"></i>
-                    导出 BPMN
-                </button>
-                <button class="toolbar-btn primary" id="saveBtn" title="保存到服务器">
-                    <i class="el-icon-upload2"></i>
-                    保存
-                </button>
+        <div class="toolbar-container">
+            <div class="toolbar">
+                <div class="button-group">
+                    <button class="toolbar-btn primary" id="saveBtn" title="保存到服务器">
+                        <i class="el-icon-upload2"></i>
+                        保存
+                    </button>
+                    <button class="toolbar-btn primary" id="exportBtn" title="导出为BPMN文件">
+                        <i class="el-icon-download"></i>
+                        导出 BPMN
+                    </button>
+                </div>
+                
+                <div class="button-group">
+                    <button class="toolbar-btn" id="zoomInBtn" title="放大">
+                        <i class="el-icon-zoom-in"></i>
+                        放大
+                    </button>
+                    <button class="toolbar-btn" id="zoomOutBtn" title="缩小">
+                        <i class="el-icon-zoom-out"></i>
+                        缩小
+                    </button>
+                    <button class="toolbar-btn" id="resetZoomBtn" title="重置缩放">
+                        <i class="el-icon-refresh"></i>
+                        重置
+                    </button>
+                </div>
+                
+                <div class="button-group">
+                    <button class="toolbar-btn" id="undoBtn" title="撤销">
+                        <i class="el-icon-back"></i>
+                        撤销
+                    </button>
+                    <button class="toolbar-btn" id="redoBtn" title="重做">
+                        <i class="el-icon-right"></i>
+                        重做
+                    </button>
+                </div>
             </div>
         </div>
         <div id="canvas"></div>
