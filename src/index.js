@@ -3,6 +3,7 @@ import {
   BpmnPropertiesPanelModule,
   BpmnPropertiesProviderModule,
 } from 'bpmn-js-properties-panel';
+import activitiModdleDescriptor from './moddle/activiti.json';
 
 // 导入样式
 import 'bpmn-js/dist/assets/diagram-js.css';
@@ -19,8 +20,14 @@ const modeler = new BpmnModeler({
   additionalModules: [
     BpmnPropertiesPanelModule,
     BpmnPropertiesProviderModule
-  ]
+  ],
+  moddleExtensions: {
+    activiti: activitiModdleDescriptor
+  }
 });
+
+let isTextView = false;
+let textViewContent = '';
 
 // 工具函数
 const utils = {
@@ -42,12 +49,22 @@ const utils = {
   // 保存到服务器
   async saveDiagram() {
     try {
-      const { xml } = await modeler.saveXML({ format: true });
       const urlParams = new URLSearchParams(window.location.search);
       const modelId = urlParams.get('modelId');
       const formData = new FormData();
       formData.append('modelId', modelId);
-      formData.append('content', xml);
+
+      let content;
+      if (isTextView) {
+        // 在文本视图中保存文本编辑器里的内容
+        content = document.getElementById('bpmnTextView').value;
+      } else {
+        // 在图形视图中保存图形编辑器产生的内容
+        const { xml } = await modeler.saveXML({ format: true });
+        content = xml;
+      }
+
+      formData.append('content', content);
       const res = await fetch('http://localhost:7001/workflow/procModel/save/modelConfig', {
         method: 'POST',
         body: formData
@@ -62,6 +79,30 @@ const utils = {
   zoom(delta) {
     const canvas = modeler.get('canvas');
     canvas.zoom(delta ? canvas.zoom() + delta : 1.0);
+  },
+
+  // 切换视图
+  async toggleView() {
+    const canvas = document.getElementById('canvas');
+    const propertiesPanel = document.getElementById('properties-panel');
+    const textView = document.getElementById('bpmnTextView');
+
+    if (isTextView) {
+      // 从文本视图切换到模型视图
+      const xml = textView.value;
+      await modeler.importXML(xml);
+      textView.style.display = 'none';
+      canvas.style.display = 'block';
+      propertiesPanel.style.display = 'block';
+    } else {
+      // 从模型视图切换到文本视图
+      textView.value = textViewContent || (await modeler.saveXML({ format: true })).xml;
+      textView.style.display = 'block';
+      canvas.style.display = 'none';
+      propertiesPanel.style.display = 'none';
+    }
+
+    isTextView = !isTextView;
   }
 };
 
@@ -133,8 +174,8 @@ const defaultProcessXML = `
     await modeler.importXML(xml);
     
     // 绑定事件
-    ['exportBtn', 'saveBtn'].forEach(id => 
-      document.getElementById(id)?.addEventListener('click', utils[id === 'exportBtn' ? 'exportBpmn' : 'saveDiagram']));
+    ['exportBtn', 'saveBtn', 'toggleViewBtn'].forEach(id => 
+      document.getElementById(id)?.addEventListener('click', utils[id === 'exportBtn' ? 'exportBpmn' : id === 'saveBtn' ? 'saveDiagram' : 'toggleView']));
     
     ['zoomIn', 'zoomOut', 'resetZoom'].forEach(id => 
       document.getElementById(`${id}Btn`)?.addEventListener('click', () => 

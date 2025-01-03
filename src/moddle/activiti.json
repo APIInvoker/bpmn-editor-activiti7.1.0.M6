@@ -31,6 +31,17 @@
           "type": "String"
         }
       ]
+    },
+    {
+      "name": "ExtensionElements",
+      "extends": ["bpmn:ExtensionElements"],
+      "properties": [
+        {
+          "name": "values",
+          "isMany": true,
+          "type": "Element"
+        }
+      ]
     }
   ]
 }

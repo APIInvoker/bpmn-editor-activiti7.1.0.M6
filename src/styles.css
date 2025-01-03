@@ -165,3 +165,22 @@ html, body {
 ::-webkit-scrollbar-track {
   background: #f5f7fa;
 }
+
+/* 浮动文本框样式 */
+.floating-textarea {
+  position: absolute;
+  top: 97px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  resize: none;
+  width: calc(100% - 60px);  /* Adjust width to fit within the browser window */
+  height: calc(100vh - 157px);  /* Adjust height to fit within the browser window */
+}
