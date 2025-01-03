@@ -4,6 +4,7 @@ import {
   BpmnPropertiesProviderModule,
 } from 'bpmn-js-properties-panel';
 import activitiModdleDescriptor from './moddle/activiti.json';
+import xmlFormatter from 'xml-formatter';
 
 // 导入样式
 import 'bpmn-js/dist/assets/diagram-js.css';
@@ -90,13 +91,19 @@ const utils = {
     if (isTextView) {
       // 从文本视图切换到模型视图
       const xml = textView.value;
-      await modeler.importXML(xml);
-      textView.style.display = 'none';
-      canvas.style.display = 'block';
-      propertiesPanel.style.display = 'block';
+      try {
+        await modeler.importXML(xml);
+        textView.style.display = 'none';
+        canvas.style.display = 'block';
+        propertiesPanel.style.display = 'block';
+      } catch (err) {
+        console.error('XML 导入失败:', err);
+        alert('XML 导入失败，请检查 XML 格式是否正确。');
+      }
     } else {
       // 从模型视图切换到文本视图
-      textView.value = textViewContent || (await modeler.saveXML({ format: true })).xml;
+      const { xml } = await modeler.saveXML({ format: true });
+      textView.value = textViewContent || xmlFormatter(xml);
       textView.style.display = 'block';
       canvas.style.display = 'none';
       propertiesPanel.style.display = 'none';

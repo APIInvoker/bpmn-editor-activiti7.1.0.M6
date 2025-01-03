@@ -17,16 +17,15 @@ html, body {
 /* 工具栏容器样式 */
 .toolbar-container {
   display: flex;
-  justify-content: center;
-  padding: 10px 20px;
+  justify-content: flex-start;
+  padding: 0 20px;  /* Adjust padding to align with canvas */
   background-color: #f5f7fa;
-  margin: 20px;
+  margin: 20px 0;  /* Adjust margin to align with canvas */
 }
 
 /* 工具栏样式 */
 .toolbar {
-  width: 73.1%;  /* This property sets the width of the toolbar */
-  max-width: 1200px;
+  width: 100%;  /* This property sets the width of the toolbar */
   padding: 10px 20px;
   background-color: #fff;
   border: 1px solid #dcdfe6;
@@ -35,10 +34,7 @@ html, body {
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
   border-radius: 4px;
   z-index: 100;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
+  position: relative;
 }
 
 .button-group {
@@ -125,10 +121,12 @@ html, body {
 /* 画布容器样式 */
 #canvas {
   flex: 1;
-  height: calc(100vh - 97px);
+  height: calc(100vh - 140px) !important;  /* Adjust height as needed */
   background-color: #fff;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
-  margin: 20px;
+  margin-top: 2px;
+  margin-left: 20px;
+  margin-bottom: 20px;
   border-radius: 4px;
 }
 
@@ -136,7 +134,7 @@ html, body {
 #properties-panel {
   position: absolute;
   right: 20px;
-  top: 20px;  /* This property sets the top position of the properties panel */
+  top: 95px;  /* This property sets the top position of the properties panel */
   bottom: 20px;  /* This property sets the bottom position of the properties panel */
   width: 300px;
   background-color: #fff;
@@ -153,13 +151,13 @@ html, body {
 
 /* 滚动条样式 */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #c0c4cc;
-  border-radius: 3px;
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -172,7 +170,7 @@ html, body {
   top: 97px;
   left: 20px;
   right: 20px;
-  bottom: 20px;
+  bottom: 20px;  /* Adjust bottom to change height */
   z-index: 100;
   border: 1px solid #dcdfe6;
   border-radius: 4px;
@@ -182,5 +180,6 @@ html, body {
   font-size: 14px;
   resize: none;
   width: calc(100% - 60px);  /* Adjust width to fit within the browser window */
-  height: calc(100vh - 157px);  /* Adjust height to fit within the browser window */
+  overflow: auto;  /* Add scroll functionality */
+  white-space: pre;  /* Remove word wrap */
 }
