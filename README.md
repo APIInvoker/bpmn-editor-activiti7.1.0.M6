@@ -4,8 +4,8 @@ This project is a BPMN editor with a properties panel.
 
 ## Requirements
 
-- Node.js >= 20.18.1
-- npm >= 10.8.2
+- Node.js == 20.18.1
+- npm == 11.0.0
 
 ## Installation
 
